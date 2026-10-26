@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rashmika Dineth | Creative Professional</title>
+    <meta name="description" content="Portfolio of Rashmika Dineth - Video Editor & Graphic Designer based in Sri Lanka.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #ffffff;
+            --accent-color: #c9a96e;
+            --muted-color: #888888;
+            --border-color: rgba(255,255,255,0.1);
+            --fog-1: rgba(255,255,255,0.04);
+            --fog-2: rgba(255,255,255,0.06);
+            --fog-3: rgba(255,255,255,0.03);
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            
+            --easing: cubic-bezier(0.76, 0, 0.24, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            cursor: none;
+            overscroll-behavior-y: none;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+            cursor: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            mix-blend-mode: difference;
+        }
+        .cursor.hover {
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            mix-blend-mode: difference;
+        }
+        
+        @media (max-width: 1024px) {
+            .cursor { display: none; }
+            body { cursor: auto; }
+            a { cursor: pointer; }
+        }
+
+        /* Animated Film Grain Overlay */
+        .noise {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            pointer-events: none;
+            z-index: 9990;
+            opacity: 0.09;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            animation: grainShift 0.3s steps(5) infinite;
+        }
+
+        @keyframes grainShift {
+            0%, 100% { transform: translate(0, 0); }
+            20% { transform: translate(-3%, 2%); }
+            40% { transform: translate(2%, -3%); }
+            60% { transform: translate(-2%, -2%); }
+            80% { transform: translate(3%, 3%); }
+        }
+
+        /* Horizontal Scroll Layout */
+        .scroll-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .section {
+            width: 100%;
+            min-height: 100vh;
+            padding: 100px 5%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @media (min-width: 1025px) {
+            body {
+                overflow: hidden;
+            }
+            .scroll-container {
+                flex-direction: row;
+                width: max-content;
+                height: 100vh;
+                will-change: transform;
+            }
+            .section {
+                width: 100vw;
+                height: 100vh;
+                padding: 100px 8%;
+                flex-shrink: 0;
+            }
+            /* Adjust specific sections widths */
+            #services { width: 150vw; }
+            #interlude { width: 80vw; }
+            #skills { width: 120vw; }
+            #tools-cloud { width: 80vw; }
+            #contact { width: 100vw; }
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 80px;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px 0;
+            z-index: 100;
+            background: var(--bg-color);
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 100%;
+                height: 70px;
+                flex-direction: row;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 0 20px;
+            }
+            .sidebar .social-links {
+                display: none;
+            }
+            .sidebar .profile-img {
+                display: block;
+                width: 42px;
+                height: 42px;
+            }
+        }
+
+        .menu-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 105;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        
+        .menu-btn span {
+            display: block;
+            width: 30px;
+            height: 2px;
+            background-color: var(--text-color);
+            transition: 0.3s var(--easing);
+        }
+        
+        .menu-btn.open span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .menu-btn.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-btn.open span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.1);
+            border-color: var(--accent-color);
+        }
+        
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .social-links a svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--muted-color);
+            transition: fill 0.3s;
+        }
+
+        .social-links a:hover svg {
+            fill: var(--accent-color);
+        }
+
+        /* Fullscreen Menu */
+        .fullscreen-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-color);
+            z-index: 101;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            clip-path: circle(0% at 40px 50px);
+            transition: clip-path 0.8s var(--easing);
+        }
+
+        .fullscreen-menu.active {
+            clip-path: circle(150% at 40px 50px);
+        }
+        
+        @media (max-width: 1024px) {
+            .fullscreen-menu {
+                clip-path: circle(0% at 50% 35px);
+            }
+            .fullscreen-menu.active {
+                clip-path: circle(150% at 50% 35px);
+            }
+        }
+
+        .menu-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .menu-nav a {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            color: var(--text-color);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.4s, transform 0.4s var(--easing);
+        }
+        
+        .fullscreen-menu.active .menu-nav a {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fullscreen-menu.active .menu-nav a:nth-child(1) { transition-delay: 0.3s; }
+        .fullscreen-menu.active .menu-nav a:nth-child(2) { transition-delay: 0.4s; }
+        .fullscreen-menu.active .menu-nav a:nth-child(3) { transition-delay: 0.5s; }
+        .fullscreen-menu.active .menu-nav a:nth-child(4) { transition-delay: 0.6s; }
+
+        .menu-nav a:hover {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+
+        /* Typography & Utilities */
+        h1, h2, h3, .serif {
+            font-family: var(--font-heading);
+            font-weight: 400;
+        }
+        
+        .italic {
+            font-style: italic;
+        }
+        
+        .accent {
+            color: var(--accent-color);
+        }
+
+        /* Marquee */
+        .marquee-container {
+            width: 100vw;
+            overflow: hidden;
+            white-space: nowrap;
+            position: absolute;
+            left: 0;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-color);
+            z-index: 10;
+        }
+        
+        .marquee-top { top: 0; }
+        
+        .marquee {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted-color);
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* Fog & Mist Animation */
+        .fog-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .fog-layer {
+            position: absolute;
+            width: 250vw;
+            height: 120%;
+            pointer-events: none;
+            filter: blur(45px);
+            opacity: 0.7;
+        }
+        
+        .fog-1 {
+            background: radial-gradient(ellipse 70% 60% at 30% 40%, rgba(201, 169, 110, 0.12) 0%, rgba(255, 255, 255, 0.08) 40%, transparent 75%);
+            animation: fogAnim1 38s ease-in-out infinite alternate;
+            top: -15%;
+            left: 0;
+        }
+        
+        .fog-2 {
+            background: radial-gradient(ellipse 80% 65% at 75% 65%, rgba(255, 255, 255, 0.1) 0%, rgba(201, 169, 110, 0.08) 45%, transparent 80%);
+            animation: fogAnim2 46s ease-in-out infinite alternate;
+            bottom: -15%;
+            left: -20%;
+        }
+        
+        .fog-3 {
+            background: radial-gradient(circle at 50% 50%, rgba(201, 169, 110, 0.09) 0%, rgba(255, 255, 255, 0.06) 55%, transparent 85%);
+            animation: fogAnim3 52s linear infinite;
+            top: 10%;
+            left: -10%;
+        }
+        
+        @keyframes fogAnim1 {
+            0% { transform: translateX(0) scaleY(1); }
+            100% { transform: translateX(-25%) scaleY(1.15); }
+        }
+        @keyframes fogAnim2 {
+            0% { transform: translateX(0) scaleY(1.1); }
+            100% { transform: translateX(20%) scaleY(0.95); }
+        }
+        @keyframes fogAnim3 {
+            0% { transform: translateX(0) rotate(0deg); }
+            50% { transform: translateX(-15%) rotate(1.5deg); }
+            100% { transform: translateX(0) rotate(0deg); }
+        }
+
+        /* --- Section 1: Hero --- */
+        #hero {
+            padding-left: 120px; /* Account for sidebar */
+        }
+        @media (max-width: 1024px) {
+            #hero { padding-left: 5%; }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page-title {
+            position: absolute;
+            top: 100px;
+            left: 120px;
+            font-size: 0.9rem;
+            color: var(--muted-color);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        @media (max-width: 1024px) {
+            .page-title { top: 100px; left: 5%; }
+        }
+
+        .hero-heading {
+            font-size: clamp(4rem, 10vw, 10rem);
+            line-height: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .heading-line {
+            overflow: hidden;
+            display: block;
+        }
+        
+        .heading-text {
+            display: block;
+            transform: translateY(110%);
+            transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        
+        .heading-line.in-view .heading-text {
+            transform: translateY(0);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--muted-color);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s 1s, transform 1s 1s;
+        }
+        
+        .hero-subtitle.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .contact-link-hero {
+            position: absolute;
+            top: 100px;
+            right: 10%;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+            transition: color 0.3s;
+        }
+        .contact-link-hero:hover {
+            color: var(--accent-color);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 50px;
+            right: 10%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .scroll-circle {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .scroll-circle svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--text-color);
+        }
+        
+        @media (min-width: 1025px) {
+            .scroll-circle svg {
+                transform: rotate(-90deg);
+            }
+        }
+
+        /* --- Section 2: Services --- */
+        .services-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            opacity: 0.03;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .services-marquee {
+            font-family: var(--font-heading);
+            font-size: 30vw;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
+
+        .services-grid {
+            display: flex;
+            gap: 40px;
+            z-index: 2;
+            padding-top: 50px;
+        }
+        
+        @media (max-width: 1024px) {
+            .services-grid {
+                flex-direction: column;
+                margin-top: 50px;
+            }
+        }
+        
+        .service-card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            opacity: 0;
+        }
+        
+        @media (min-width: 1025px) {
+            .service-card:nth-child(1) { transform: translateY(100px); }
+            .service-card:nth-child(2) { transform: translateY(-50px); }
+            .service-card:nth-child(3) { transform: translateY(50px); }
+            
+            .service-card.in-view {
+                animation: slideFade 1s forwards cubic-bezier(0.19, 1, 0.22, 1);
+            }
+        }
+        @media (max-width: 1024px) {
+            .service-card { transform: translateY(50px); }
+            .service-card.in-view {
+                animation: slideFadeMobile 1s forwards cubic-bezier(0.19, 1, 0.22, 1);
+            }
+        }
+        
+        @keyframes slideFade {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideFadeMobile {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .service-img-wrapper {
+            width: 100%;
+            aspect-ratio: 3/4;
+            position: relative;
+            overflow: hidden;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            background: #000;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            clip-path: inset(100% 0 0 0);
+            transition: clip-path 1.2s cubic-bezier(0.76, 0, 0.24, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .service-img-wrapper:hover {
+            border-color: rgba(201, 169, 110, 0.5);
+            box-shadow: 0 20px 50px rgba(201, 169, 110, 0.15);
+        }
+        
+        .service-card.in-view .service-img-wrapper {
+            clip-path: inset(0 0 0 0);
+        }
+        
+        .service-img {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-img svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--muted-color);
+            opacity: 0.5;
+        }
+
+        .mt-3 {
+            margin-top: 12px;
+        }
+
+        .service-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            align-self: flex-start;
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .service-subtitle {
+            font-size: 0.9rem;
+            color: var(--muted-color);
+        }
+
+        /* --- Section 3: Interlude --- */
+        .interlude-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .interlude-heading {
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            margin-bottom: 50px;
+            line-height: 1.2;
+        }
+        
+        .interlude-text {
+            font-size: clamp(1rem, 1.5vw, 1.5rem);
+            line-height: 1.6;
+            color: var(--muted-color);
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s, transform 1s;
+        }
+        
+        .interlude-text.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Section 4: Skills --- */
+        #skills {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+        @media (max-width: 1024px) {
+            #skills { flex-direction: column; justify-content: center; }
+        }
+
+        .skills-table {
+            width: 70%;
+            max-width: 800px;
+            z-index: 2;
+        }
+        @media (max-width: 1024px) {
+            .skills-table { width: 100%; margin-top: 50px; }
+        }
+        
+        .skill-row {
+            display: flex;
+            padding: 25px 0;
+            border-bottom: 1px solid rgba(255,255,255,0);
+            position: relative;
+        }
+        
+        .skill-row::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--border-color);
+            transition: width 1s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        
+        .skill-row.in-view::after {
+            width: 100%;
+        }
+        
+        .skill-header {
+            color: var(--muted-color);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding-bottom: 10px;
+        }
+        
+        .skill-name {
+            flex: 1;
+            font-size: 1.5rem;
+            font-family: var(--font-heading);
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        
+        .skill-desc {
+            flex: 1;
+            text-align: right;
+            color: var(--muted-color);
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        
+        .skill-row.in-view .skill-name,
+        .skill-row.in-view .skill-desc {
+            opacity: 1;
+            transform: translateX(0);
+            transition-delay: 0.3s;
+        }
+
+        .expertise-vertical {
+            font-family: var(--font-heading);
+            font-size: 12vw;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.1);
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            white-space: nowrap;
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%) rotate(180deg);
+            z-index: 1;
+        }
+        @media (max-width: 1024px) {
+            .expertise-vertical { display: none; }
+        }
+
+        /* --- Section 5: Tools Cloud --- */
+        #tools-cloud {
+            align-items: center;
+        }
+        
+        .cloud-container {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            perspective: 1000px;
+            margin: 0 auto 50px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 1s, transform 1s;
+        }
+        
+        .cloud-container.in-view {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .tag {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            transform-style: preserve-3d;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            will-change: transform, opacity;
+        }
+
+        .cloud-text {
+            text-align: center;
+            max-width: 600px;
+            color: var(--muted-color);
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s 0.5s, transform 1s 0.5s;
+        }
+        .cloud-text.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Section 6: Contact --- */
+        #contact {
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .contact-heading {
+            font-size: clamp(3rem, 8vw, 8rem);
+            line-height: 1;
+            margin-bottom: 50px;
+        }
+        
+        .contact-circle-wrapper {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 1s, transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        
+        .contact-circle-wrapper.in-view {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .contact-svg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: rotateText 42s linear infinite;
+        }
+        
+        @keyframes rotateText {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .contact-svg text {
+            font-family: var(--font-body);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            fill: var(--text-color);
+        }
+        
+        .contact-arrow {
+            width: 40px;
+            height: 40px;
+            fill: var(--accent-color);
+        }
+        
+        .footer-socials {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s 0.3s, transform 1s 0.3s;
+        }
+        
+        .footer-socials.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .footer-socials a svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-color);
+            transition: fill 0.3s, transform 0.3s;
+        }
+        
+        .footer-socials a:hover svg {
+            fill: var(--accent-color);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            font-size: 0.85rem;
+            color: var(--muted-color);
+        }
+
+        /* Loading Screen (Yellow/Gold Glowing Bubble) */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #0a0a0a;
+            z-index: 100000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s cubic-bezier(0.76, 0, 0.24, 1), visibility 0.8s ease;
+            pointer-events: all;
+        }
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-orb-wrapper {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .loader-ripple {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 1px solid rgba(201, 169, 110, 0.35);
+            animation: ripplePulse 2.4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+        }
+        .loader-ripple:nth-child(2) {
+            animation-delay: 0.8s;
+        }
+        .loader-ripple:nth-child(3) {
+            animation-delay: 1.6s;
+        }
+
+        .loading-bubble {
+            width: 72px;
+            height: 72px;
+            background: radial-gradient(circle at 35% 35%, #fff6d6 0%, #f0c978 30%, #c9a96e 65%, #7a5a22 100%);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 50px rgba(201, 169, 110, 0.7), 0 0 100px rgba(255, 215, 0, 0.35), inset 0 0 15px rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: bubbleBreathe 2s ease-in-out infinite alternate;
+            transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.7s ease;
+        }
+
+        .loading-bubble.expand {
+            transform: scale(25);
+            opacity: 0.15;
+        }
+
+        .loader-initials {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1a1202;
+            letter-spacing: 1px;
+            user-select: none;
+        }
+
+        .loader-brand {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+            user-select: none;
+        }
+
+        .loader-counter {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            color: var(--text-color);
+            font-style: italic;
+            min-width: 45px;
+            text-align: center;
+            user-select: none;
+        }
+
+        .loader-bar-bg {
+            width: 140px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 14px;
+        }
+
+        .loader-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #c9a96e, #ffd700);
+            transition: width 0.05s linear;
+        }
+
+        @keyframes ripplePulse {
+            0% { transform: scale(0.6); opacity: 0.9; }
+            100% { transform: scale(2.2); opacity: 0; }
+        }
+
+        @keyframes bubbleBreathe {
+            0% { transform: scale(0.95); box-shadow: 0 0 40px rgba(201, 169, 110, 0.5), 0 0 80px rgba(255, 215, 0, 0.2); }
+            100% { transform: scale(1.08); box-shadow: 0 0 65px rgba(201, 169, 110, 0.85), 0 0 110px rgba(255, 215, 0, 0.4); }
+        }
+
+        /* Profile About Modal */
+        .about-modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            z-index: 99998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 20px;
+        }
+        .about-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .about-modal {
+            background: rgba(18, 18, 20, 0.95);
+            border: 1px solid rgba(201, 169, 110, 0.3);
+            border-radius: 24px;
+            padding: 40px 35px;
+            max-width: 520px;
+            width: 100%;
+            text-align: center;
+            transform: scale(0.85) translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            cursor: auto;
+            position: relative;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8), 0 0 40px rgba(201, 169, 110, 0.1);
+        }
+        .about-modal-overlay.active .about-modal {
+            transform: scale(1) translateY(0);
+        }
+        .about-modal-close {
+            position: absolute;
+            top: 16px; right: 20px;
+            background: none; border: none;
+            color: var(--muted-color);
+            font-size: 1.8rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .about-modal-close:hover {
+            color: var(--accent-color);
+            transform: rotate(90deg);
+        }
+        .about-modal-photo {
+            width: 105px;
+            height: 105px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 16px;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 25px rgba(201, 169, 110, 0.35);
+        }
+        .about-modal-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .about-modal h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+        .about-modal .about-role {
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 12px;
+        }
+        .about-modal .about-location {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--muted-color);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+        .about-modal p {
+            color: #b0b0b0;
+            line-height: 1.6;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        .about-skills-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .about-skills-pills span {
+            font-size: 0.72rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: rgba(201, 169, 110, 0.1);
+            color: var(--accent-color);
+            border: 1px solid rgba(201, 169, 110, 0.25);
+        }
+        .about-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 22px;
+        }
+        .about-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 24px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .about-btn-call {
+            background: var(--accent-color);
+            color: #000;
+        }
+        .about-btn-call:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(201, 169, 110, 0.4);
+        }
+        .about-btn-wa {
+            background: rgba(37, 211, 102, 0.15);
+            color: #25d366;
+            border: 1px solid rgba(37, 211, 102, 0.3);
+        }
+        .about-btn-wa:hover {
+            transform: translateY(-2px);
+            background: rgba(37, 211, 102, 0.25);
+        }
+        .about-modal-socials {
+            display: flex;
+            gap: 18px;
+            justify-content: center;
+        }
+        .about-modal-socials a svg {
+            width: 20px; height: 20px;
+            fill: var(--muted-color);
+            transition: fill 0.3s, transform 0.3s;
+        }
+        .about-modal-socials a:hover svg {
+            fill: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen (Yellow/Gold Glowing Bubble) -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader-orb-wrapper">
+            <div class="loader-ripple"></div>
+            <div class="loader-ripple"></div>
+            <div class="loader-ripple"></div>
+            <div class="loading-bubble" id="loadingBubble">
+                <span class="loader-initials">RD</span>
+            </div>
+        </div>
+        <div class="loader-brand">Rashmika Dineth</div>
+        <div class="loader-counter" id="loaderCounter">0%</div>
+        <div class="loader-bar-bg">
+            <div class="loader-bar-fill" id="loaderBarFill"></div>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div class="about-modal-overlay" id="aboutModal">
+        <div class="about-modal">
+            <button class="about-modal-close" id="aboutClose" aria-label="Close">&times;</button>
+            <div class="about-modal-photo">
+                <img src="images/profile.png" alt="Rashmika Dineth" onerror="this.outerHTML='<div style=\'width:100%;height:100%;background:#0a192f;display:flex;align-items:center;justify-content:center;color:#fff;font-family:serif;font-size:28px;\'>RD</div>'">
+            </div>
+            <h3>Rashmika Dineth</h3>
+            <div class="about-role">Creative Professional</div>
+            <div class="about-location">📍 Based in Sri Lanka • 🟢 Available for Projects</div>
+            <p>Passionate Video Editor & Graphic Designer bringing creative stories to life. Specializing in company promotional videos, advertising campaigns, logo intros, and event key visuals powered by industry software and cutting-edge AI video generation.</p>
+            
+            <div class="about-skills-pills">
+                <span>Premiere Pro</span>
+                <span>Photoshop</span>
+                <span>Illustrator</span>
+                <span>Audition</span>
+                <span>CapCut</span>
+                <span>Filmora</span>
+                <span>Affinity</span>
+                <span>AI Video Gen</span>
+            </div>
+
+            <div class="about-actions">
+                <a href="tel:0789099171" class="about-btn about-btn-call">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    078 909 91 71
+                </a>
+                <a href="https://wa.me/94789099171" target="_blank" class="about-btn about-btn-wa">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 012.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 01-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.53c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.01-1.24-.74-.66-1.25-1.48-1.39-1.73-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+                    WhatsApp
+                </a>
+            </div>
+
+            <div class="about-modal-socials">
+                <a href="https://www.instagram.com/rashmika.dineth_" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.105a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg></a>
+                <a href="https://www.facebook.com/share/1HdmALUW5x/" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>
+                <a href="https://x.com/rd_official2007" target="_blank" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                <a href="https://www.tiktok.com/@rashmika.dineth_" target="_blank" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.04.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 2.23-1.11 4.46-2.92 5.86-1.66 1.28-3.9 1.63-5.91 1.1-2.45-.64-4.32-2.73-4.71-5.26-.41-2.61.57-5.32 2.55-7.01 1.77-1.52 4.31-2.02 6.55-1.33V14c-1.34-.41-2.87-.27-4.03.54-1.09.76-1.65 2.11-1.39 3.42.23 1.19 1.1 2.25 2.23 2.68 1.4.52 3.12.3 4.18-.76.92-.93 1.21-2.31 1.21-3.61.02-3.83.02-7.66.02-11.49 0-.91-.01-1.83-.01-2.74l-1.85-.02z"/></svg></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Noise Overlay -->
+    <div class="noise"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <button class="menu-btn" id="menuBtn" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <div class="profile-img hover-target" id="profileBtn" role="button" tabindex="0" aria-label="About Me">
+            <img src="images/profile.png" alt="Rashmika Dineth" onerror="this.outerHTML='<div style=\'width:100%; height:100%; background:#0a192f; display:flex; align-items:center; justify-content:center; color:#fff; font-family:serif; font-size:18px;\'>RD</div>'">
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.instagram.com/rashmika.dineth_" target="_blank" class="hover-target" aria-label="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.105a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/share/1HdmALUW5x/" target="_blank" class="hover-target" aria-label="Facebook">
+                <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+            </a>
+            <a href="https://x.com/rd_official2007" target="_blank" class="hover-target" aria-label="X">
+                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@rashmika.dineth_" target="_blank" class="hover-target" aria-label="TikTok">
+                <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.04.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 2.23-1.11 4.46-2.92 5.86-1.66 1.28-3.9 1.63-5.91 1.1-2.45-.64-4.32-2.73-4.71-5.26-.41-2.61.57-5.32 2.55-7.01 1.77-1.52 4.31-2.02 6.55-1.33V14c-1.34-.41-2.87-.27-4.03.54-1.09.76-1.65 2.11-1.39 3.42.23 1.19 1.1 2.25 2.23 2.68 1.4.52 3.12.3 4.18-.76.92-.93 1.21-2.31 1.21-3.61.02-3.83.02-7.66.02-11.49 0-.91-.01-1.83-.01-2.74l-1.85-.02z"/></svg>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Fullscreen Menu -->
+    <div class="fullscreen-menu" id="fullscreenMenu">
+        <div class="menu-nav">
+            <a href="#hero" class="hover-target menu-link">Home</a>
+            <a href="#services" class="hover-target menu-link">Services</a>
+            <a href="#skills" class="hover-target menu-link">Expertise</a>
+            <a href="#about" class="hover-target menu-link about-trigger-link">About Me</a>
+            <a href="#contact" class="hover-target menu-link">Contact</a>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="scroll-container" id="scrollContainer">
+
+        <!-- Top Marquee -->
+        <div class="marquee-container marquee-top">
+            <div class="marquee">
+                VIDEO EDITING • GRAPHIC DESIGN • MOTION GRAPHICS • AI VIDEO GENERATION • BRAND DESIGN • VIDEO EDITING • GRAPHIC DESIGN • MOTION GRAPHICS • AI VIDEO GENERATION • BRAND DESIGN • 
+            </div>
+            <div class="marquee">
+                VIDEO EDITING • GRAPHIC DESIGN • MOTION GRAPHICS • AI VIDEO GENERATION • BRAND DESIGN • VIDEO EDITING • GRAPHIC DESIGN • MOTION GRAPHICS • AI VIDEO GENERATION • BRAND DESIGN • 
+            </div>
+        </div>
+
+        <!-- Section 1: Hero -->
+        <section class="section" id="hero">
+            <!-- Fog Layers -->
+            <div class="fog-container">
+                <div class="fog-layer fog-1"></div>
+                <div class="fog-layer fog-2"></div>
+                <div class="fog-layer fog-3"></div>
+            </div>
+
+            <div class="page-title">RD / Portfolio</div>
+            <a href="#contact" class="contact-link-hero hover-target">Contact Me</a>
+            
+            <div class="hero-content">
+                <h1 class="hero-heading">
+                    <span class="heading-line io-trigger"><span class="heading-text">RASHMIKA'S</span></span>
+                    <span class="heading-line io-trigger"><span class="heading-text italic accent">PROFESSIONAL</span></span>
+                </h1>
+                <p class="hero-subtitle io-trigger">PORTFOLIO</p>
+            </div>
+            
+            <div class="scroll-indicator">
+                <span class="desktop-text">Scroll</span>
+                <span class="mobile-text" style="display:none;">Scroll</span>
+                <div class="scroll-circle">
+                    <svg viewBox="0 0 24 24"><path d="M12 21l-8-9h6V3h4v9h6l-8 9z"/></svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Services -->
+        <section class="section" id="services">
+            <div class="services-header">
+                <div class="services-marquee">SERVICES • SERVICES • SERVICES • </div>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Card 1: Promotional Videos -->
+                <div class="service-card io-trigger">
+                    <div class="service-img-wrapper hover-target">
+                        <div class="service-img" style="background: #000; padding: 0;">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/9Q7N8Yc7Zfc?si=BgL9E1I0f3TnN-P6" title="Promotional Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="service-label">Featured</span>
+                        <h3 class="service-title serif mt-3">Promotional Videos</h3>
+                        <p class="service-subtitle">Company Ads & Promos</p>
+                    </div>
+                </div>
+                
+                <!-- Card 2: Logo Intros -->
+                <div class="service-card io-trigger" style="transition-delay: 0.2s">
+                    <div class="service-img-wrapper hover-target">
+                        <div class="service-img" style="background: #000; padding: 0;">
+                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/N0OE3HB6HQE?si=xlcEFRQ2VeWV7qAN" title="Logo Intro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="service-label">Featured</span>
+                        <h3 class="service-title serif mt-3">Logo Intros</h3>
+                        <p class="service-subtitle">Animated Brand Identities</p>
+                    </div>
+                </div>
+                
+                <!-- Card 3: Event Posters -->
+                <div class="service-card io-trigger" style="transition-delay: 0.4s">
+                    <div class="service-img-wrapper hover-target">
+                        <div class="service-img" style="padding: 0;">
+                            <img src="../../brain/572c7677-5c26-482c-9973-0b7e0a051533/.user_uploaded/media_1791365808202.jpg" alt="Event Poster - Vidurath Ninnada" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;" onerror="this.src='images/event-poster.jpg'">
+                        </div>
+                    </div>
+                    <div>
+                        <span class="service-label">Featured</span>
+                        <h3 class="service-title serif mt-3">Event Posters</h3>
+                        <p class="service-subtitle">Print & Digital Key Visuals</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Interlude -->
+        <section class="section" id="interlude">
+            <div class="interlude-content">
+                <h2 class="interlude-heading io-trigger">
+                    <span class="heading-line"><span class="heading-text">Currently based in</span></span>
+                    <span class="heading-line"><span class="heading-text italic accent">Sri Lanka</span></span>
+                </h2>
+                <p class="interlude-text io-trigger">Specializing in video production and graphic design, I create compelling visual content for brands and businesses. From promotional videos to event materials, I bring creative visions to life.</p>
+                <p class="interlude-text io-trigger" style="transition-delay: 0.2s">With expertise spanning Adobe Creative Suite, AI-powered video generation, and modern editing tools, I deliver professional-grade content that captures attention and drives engagement.</p>
+            </div>
+        </section>
+
+        <!-- Section 4: Skills/Tools -->
+        <section class="section" id="skills">
+            <div class="expertise-vertical">EXPERTISE</div>
+            
+            <div class="skills-table">
+                <div class="skill-row io-trigger">
+                    <div class="skill-header">Software</div>
+                    <div class="skill-header" style="text-align:right">Focus</div>
+                </div>
+                <div class="skill-row io-trigger">
+                    <div class="skill-name">Adobe Photoshop</div>
+                    <div class="skill-desc">Photo Editing & Compositing</div>
+                </div>
+                <div class="skill-row io-trigger">
+                    <div class="skill-name">Adobe Illustrator</div>
+                    <div class="skill-desc">Vector Graphics & Logos</div>
+                </div>
+                <div class="skill-row io-trigger">
+                    <div class="skill-name">Adobe Premiere Pro</div>
+                    <div class="skill-desc">Professional Video Editing</div>
+                </div>
+                <div class="skill-row io-trigger">
+                    <div class="skill-name">Adobe Audition</div>
+                    <div class="skill-desc">Audio Editing & Mixing</div>
+                </div>
+                <div class="skill-row io-trigger">
+                    <div class="skill-name">Filmora & CapCut</div>
+                    <div class="skill-desc">Quick Video Production</div>
+                </div>
+                <div class="skill-row io-trigger">
+                    <div class="skill-name">Affinity Suite</div>
+                    <div class="skill-desc">Design & Publishing</div>
+                </div>
+                <div class="skill-row io-trigger">
+                    <div class="skill-name">AI Video Tools</div>
+                    <div class="skill-desc">AI-Powered Content Gen</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Tools Cloud -->
+        <section class="section" id="tools-cloud">
+            <div class="cloud-container io-trigger" id="tagCloud">
+                <!-- Tags generated by JS -->
+            </div>
+            <p class="cloud-text io-trigger">My creative approach blends technical proficiency across industry-standard software with an eye for modern aesthetics, ensuring every frame and pixel serves the core message.</p>
+        </section>
+
+        <!-- Section 6: Contact -->
+        <section class="section" id="contact">
+            <h2 class="contact-heading">
+                <span class="heading-line io-trigger"><span class="heading-text">Let's create</span></span>
+                <span class="heading-line io-trigger"><span class="heading-text italic accent">something amazing</span></span>
+                <span class="heading-line io-trigger"><span class="heading-text">together!</span></span>
+            </h2>
+            
+            <a href="tel:0789099171" class="contact-circle-wrapper hover-target io-trigger">
+                <svg class="contact-svg" viewBox="0 0 100 100">
+                    <path id="circlePath" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="transparent" />
+                    <text>
+                        <textPath href="#circlePath" startOffset="0%">
+                            CONTACT ME • CONTACT ME • CONTACT ME • 
+                        </textPath>
+                    </text>
+                </svg>
+                <svg class="contact-arrow" viewBox="0 0 24 24"><path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z"/></svg>
+            </a>
+            
+            <div class="footer-socials io-trigger">
+                <a href="https://www.instagram.com/rashmika.dineth_" target="_blank" class="hover-target"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.105a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg></a>
+                <a href="https://www.facebook.com/share/1HdmALUW5x/" target="_blank" class="hover-target"><svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>
+                <a href="https://x.com/rd_official2007" target="_blank" class="hover-target"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                <a href="https://www.tiktok.com/@rashmika.dineth_" target="_blank" class="hover-target"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.04.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 2.23-1.11 4.46-2.92 5.86-1.66 1.28-3.9 1.63-5.91 1.1-2.45-.64-4.32-2.73-4.71-5.26-.41-2.61.57-5.32 2.55-7.01 1.77-1.52 4.31-2.02 6.55-1.33V14c-1.34-.41-2.87-.27-4.03.54-1.09.76-1.65 2.11-1.39 3.42.23 1.19 1.1 2.25 2.23 2.68 1.4.52 3.12.3 4.18-.76.92-.93 1.21-2.31 1.21-3.61.02-3.83.02-7.66.02-11.49 0-.91-.01-1.83-.01-2.74l-1.85-.02z"/></svg></a>
+            </div>
+            
+            <p class="copyright">© 2026 Rashmika Dineth. All Rights Reserved</p>
+        </section>
+
+    </main>
+
+    <script>
+        // 1. Loading Animation (Golden Expanding Bubble + Live Counter)
+        const loadingScreen = document.getElementById('loadingScreen');
+        const loadingBubble = document.getElementById('loadingBubble');
+        const loaderCounter = document.getElementById('loaderCounter');
+        const loaderBarFill = document.getElementById('loaderBarFill');
+        let progress = 0;
+
+        const loadInterval = setInterval(() => {
+            progress += Math.floor(Math.random() * 8) + 4;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(loadInterval);
+                if (loaderCounter) loaderCounter.textContent = '100%';
+                if (loaderBarFill) loaderBarFill.style.width = '100%';
+                
+                // Expand bubble smoothly and dismiss loader
+                setTimeout(() => {
+                    if (loadingBubble) loadingBubble.classList.add('expand');
+                    setTimeout(() => {
+                        if (loadingScreen) loadingScreen.classList.add('hidden');
+                        checkIntersections();
+                    }, 500);
+                }, 300);
+            } else {
+                if (loaderCounter) loaderCounter.textContent = `${progress}%`;
+                if (loaderBarFill) loaderBarFill.style.width = `${progress}%`;
+            }
+        }, 45);
+
+        // Check scroll direction text
+        function checkScrollText() {
+            const dt = document.querySelector('.desktop-text');
+            const mt = document.querySelector('.mobile-text');
+            if (window.innerWidth <= 1024) {
+                if (dt) dt.style.display = 'none';
+                if (mt) mt.style.display = 'inline';
+            } else {
+                if (dt) dt.style.display = 'inline';
+                if (mt) mt.style.display = 'none';
+            }
+        }
+        checkScrollText();
+        window.addEventListener('resize', checkScrollText);
+
+        // 2. Custom Cursor
+        const cursor = document.getElementById('cursor');
+        const hoverTargets = document.querySelectorAll('.hover-target, a, button');
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            if (window.innerWidth > 1024 && cursor) {
+                let dx = mouseX - cursorX;
+                let dy = mouseY - cursorY;
+                cursorX += dx * 0.15;
+                cursorY += dy * 0.15;
+                cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
+            }
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        hoverTargets.forEach(target => {
+            target.addEventListener('mouseenter', () => cursor && cursor.classList.add('hover'));
+            target.addEventListener('mouseleave', () => cursor && cursor.classList.remove('hover'));
+        });
+
+        // 3. Hamburger Menu & Navigation
+        const menuBtn = document.getElementById('menuBtn');
+        const fullscreenMenu = document.getElementById('fullscreenMenu');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        function toggleMenu() {
+            menuBtn.classList.toggle('open');
+            fullscreenMenu.classList.toggle('active');
+        }
+
+        if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
+        menuLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.classList.contains('about-trigger-link')) {
+                    e.preventDefault();
+                    toggleMenu();
+                    openAbout();
+                    return;
+                }
+                toggleMenu();
+            });
+        });
+
+        // 4. Horizontal Scroll (Desktop)
+        const scrollContainer = document.getElementById('scrollContainer');
+        let isDesktop = window.innerWidth > 1024;
+        let currentScroll = 0;
+        let targetScroll = 0;
+
+        window.addEventListener('resize', () => {
+            isDesktop = window.innerWidth > 1024;
+            if (!isDesktop) {
+                scrollContainer.style.transform = 'none';
+            }
+        });
+
+        window.addEventListener('wheel', (e) => {
+            if (isDesktop && !fullscreenMenu.classList.contains('active') && !aboutModal.classList.contains('active')) {
+                targetScroll += e.deltaY;
+                const maxScroll = scrollContainer.scrollWidth - window.innerWidth;
+                targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+            }
+        }, { passive: true });
+
+        // 4b. Keyboard Arrow Navigation
+        window.addEventListener('keydown', (e) => {
+            if (fullscreenMenu.classList.contains('active')) return;
+            if (aboutModal.classList.contains('active')) {
+                if (e.key === 'Escape') closeAbout();
+                return;
+            }
+            const scrollAmount = 260;
+            if (isDesktop) {
+                if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                    targetScroll += scrollAmount;
+                    e.preventDefault();
+                } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                    targetScroll -= scrollAmount;
+                    e.preventDefault();
+                } else if (e.key === 'Home') {
+                    targetScroll = 0;
+                    e.preventDefault();
+                } else if (e.key === 'End') {
+                    targetScroll = scrollContainer.scrollWidth - window.innerWidth;
+                    e.preventDefault();
+                } else if (e.key === ' ' || e.key === 'PageDown') {
+                    targetScroll += window.innerWidth * 0.75;
+                    e.preventDefault();
+                } else if (e.key === 'PageUp') {
+                    targetScroll -= window.innerWidth * 0.75;
+                    e.preventDefault();
+                }
+                const maxScroll = scrollContainer.scrollWidth - window.innerWidth;
+                targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+            }
+        });
+
+        // 4c. Profile About Modal
+        const aboutModal = document.getElementById('aboutModal');
+        const aboutClose = document.getElementById('aboutClose');
+        const profileBtn = document.getElementById('profileBtn');
+
+        function openAbout() {
+            if (aboutModal) aboutModal.classList.add('active');
+        }
+        function closeAbout() {
+            if (aboutModal) aboutModal.classList.remove('active');
+        }
+
+        if (profileBtn) {
+            profileBtn.addEventListener('click', openAbout);
+        }
+        if (aboutClose) {
+            aboutClose.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeAbout();
+            });
+        }
+        if (aboutModal) {
+            aboutModal.addEventListener('click', (e) => {
+                if (e.target === aboutModal) closeAbout();
+            });
+        }
+
+        // Scroll indicator click
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        if (scrollIndicator) {
+            scrollIndicator.style.cursor = 'pointer';
+            scrollIndicator.addEventListener('click', () => {
+                const servicesSec = document.getElementById('services');
+                if (isDesktop && servicesSec) {
+                    targetScroll = servicesSec.offsetLeft;
+                } else if (servicesSec) {
+                    servicesSec.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+
+        function animateScroll() {
+            if (isDesktop) {
+                currentScroll += (targetScroll - currentScroll) * 0.08;
+                scrollContainer.style.transform = `translateX(-${currentScroll}px)`;
+                checkIntersections();
+            }
+            requestAnimationFrame(animateScroll);
+        }
+        animateScroll();
+
+        // Menu smooth scroll fix for horizontal layout
+        menuLinks.forEach(link => {
+            if (!link.classList.contains('about-trigger-link')) {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (!targetElement) return;
+                    
+                    if (isDesktop) {
+                        let offset = 0;
+                        let elem = targetElement;
+                        while(elem && elem !== scrollContainer) {
+                            offset += elem.offsetLeft;
+                            elem = elem.offsetParent;
+                        }
+                        targetScroll = offset;
+                    } else {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+        });
+
+        // 5. Intersection Observer
+        const ioTriggers = document.querySelectorAll('.io-trigger, .heading-line, .service-card, .skill-row');
+        
+        function checkIntersections() {
+            if (isDesktop) {
+                ioTriggers.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.left < window.innerWidth * 0.85 && rect.right > 0) {
+                        el.classList.add('in-view');
+                    }
+                });
+            }
+        }
+
+        // Standard IO for mobile vertical scroll
+        const observer = new IntersectionObserver((entries) => {
+            if (!isDesktop) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }
+        }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+
+        ioTriggers.forEach(el => observer.observe(el));
+
+        // 6. 3D Tag Cloud (Smooth, Slow, Mobile Optimized)
+        const tags = [
+            'Photoshop', 'Illustrator', 'Audition', 'Premiere Pro', 
+            'Filmora', 'CapCut', 'Affinity', 'AI Video', 
+            'After Effects', 'InDesign', 'Lightroom', 'DaVinci', 'Canva'
+        ];
+        
+        const cloudContainer = document.getElementById('tagCloud');
+        let cloudRadius = window.innerWidth <= 768 ? 120 : (window.innerWidth <= 1024 ? 135 : 160);
+        const tagElements = [];
+        
+        tags.forEach((tag, i) => {
+            const el = document.createElement('div');
+            el.className = 'tag';
+            el.textContent = tag;
+            if (window.innerWidth <= 768) {
+                el.style.fontSize = '1.15rem';
+            }
+            cloudContainer.appendChild(el);
+            tagElements.push({
+                el: el,
+                phi: Math.acos(-1 + (2 * i) / tags.length),
+                theta: Math.sqrt(tags.length * Math.PI) * Math.acos(-1 + (2 * i) / tags.length)
+            });
+        });
+
+        let cloudRotationX = 0;
+        let cloudRotationY = 0;
+        let baseRotSpeed = window.innerWidth <= 1024 ? 0.0004 : 0.0006;
+        let targetCloudRotX = baseRotSpeed;
+        let targetCloudRotY = baseRotSpeed * 1.2;
+
+        // Mouse interaction (gentle)
+        cloudContainer.addEventListener('mousemove', (e) => {
+            const rect = cloudContainer.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            targetCloudRotY = x * 0.00002;
+            targetCloudRotX = -y * 0.00002;
+        });
+        
+        cloudContainer.addEventListener('mouseleave', () => {
+            targetCloudRotY = baseRotSpeed * 1.2;
+            targetCloudRotX = baseRotSpeed;
+        });
+
+        // Touch interaction for mobile
+        let touchX = 0, touchY = 0;
+        cloudContainer.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+                touchX = e.touches[0].clientX;
+                touchY = e.touches[0].clientY;
+            }
+        }, { passive: true });
+
+        cloudContainer.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 1) {
+                const dx = e.touches[0].clientX - touchX;
+                const dy = e.touches[0].clientY - touchY;
+                touchX = e.touches[0].clientX;
+                touchY = e.touches[0].clientY;
+                targetCloudRotY = dx * 0.00008;
+                targetCloudRotX = -dy * 0.00008;
+            }
+        }, { passive: true });
+
+        cloudContainer.addEventListener('touchend', () => {
+            targetCloudRotY = baseRotSpeed * 1.2;
+            targetCloudRotX = baseRotSpeed;
+        });
+
+        function updateCloud() {
+            cloudRotationX += targetCloudRotX;
+            cloudRotationY += targetCloudRotY;
+            
+            const sinX = Math.sin(cloudRotationX);
+            const cosX = Math.cos(cloudRotationX);
+            const sinY = Math.sin(cloudRotationY);
+            const cosY = Math.cos(cloudRotationY);
+
+            tagElements.forEach(tag => {
+                let x = cloudRadius * Math.cos(tag.theta) * Math.sin(tag.phi);
+                let y = cloudRadius * Math.sin(tag.theta) * Math.sin(tag.phi);
+                let z = cloudRadius * Math.cos(tag.phi);
+                
+                let y1 = y * cosX - z * sinX;
+                let z1 = z * cosX + y * sinX;
+                
+                let x2 = x * cosY + z1 * sinY;
+                let z2 = z1 * cosY - x * sinY;
+                
+                tag.phi = Math.acos(z2 / cloudRadius);
+                tag.theta = Math.atan2(y1, x2);
+                
+                const scale = (cloudRadius + z2) / (2 * cloudRadius) * 0.8 + 0.4;
+                const alpha = (cloudRadius + z2) / (2 * cloudRadius) * 0.8 + 0.2;
+                
+                tag.el.style.transform = `translate(-50%, -50%) translate3d(${x2}px, ${y1}px, ${z2}px) scale(${scale})`;
+                tag.el.style.opacity = alpha;
+                tag.el.style.zIndex = Math.round(z2);
+            });
+            
+            requestAnimationFrame(updateCloud);
+        }
+        
+        updateCloud();
+    </script>
+
+    </script>
+</body>
+</html>
